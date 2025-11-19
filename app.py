@@ -7,7 +7,7 @@ def main():
     os.environ["http_proxy"] = ""
     os.environ["https_proxy"] = ""
     demo = build_ui()
-    demo.launch()
+    demo.launch(share=True)
 
 
 if __name__ == "__main__":
