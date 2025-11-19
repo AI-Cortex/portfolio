@@ -1,0 +1,153 @@
+data_path: &data_path "data/data.parquet"
+title: "Project Portfolio"
+description: "Showcasing various projects and their details."
+split_char: "#"
+
+constant:
+  data_type_options: &data_type_options
+    - "🖼️ Image"
+    - "🔊 Audio"
+    - "📜 Text"
+    - "📈 Tabular"
+    - "🗺️ Spatio-temporal"
+    - "🎮 Human Interaction"
+    - "🧬 Bio/Medical"
+    - "🧩 General Computer Vision"
+
+  technique_options: &technique_options
+    - "🤖 Machine Learning"
+    - "🧠 Deep Learning"
+    - "🪄 Generative AI"
+    - "🔁 Reinforcement Learning"
+    - "🧩 Hybrid / Multimodal"
+
+  problem_type_options: &problem_type_options
+    - "🎯 Classification"
+    - "📈 Regression"
+    - "🧮 Clustering"
+    - "📚 NLP Tasks"
+    - "🧩 Anomaly Detection"
+    - "🎨 Generation"
+    - "🧭 Reinforcement Learning"
+
+  domain_options: &domain_options
+    - "💰 Finance"
+    - "🏥 Healthcare"
+    - "🛒 Retail"
+    - "🌍 Environment"
+    - "🚗 Transportation"
+    - "🎥 Media & Content"
+    - "🧑‍🏫 Education"
+    - "🧩 General Computer Vision"
+  tools_options: &tools_options
+    - "🧰 TensorFlow"
+    - "🔥 PyTorch"
+    - "📘 Scikit-learn"
+    - "🤗 HuggingFace"
+    - "👁️ OpenCV"
+    - "📦 Docker"
+    - "⚙️ MLflow"
+  level_options: &level_options
+    - ""
+    - "🟢 Beginner"
+    - "🟡 Intermediate"
+    - "🔵 Advanced"
+    - "🟣 Expert"
+  outcome_options: &outcome_options
+    - "📊 Analytical"
+    - "🤖 Modeling"
+    - "💬 Interactive"
+    - "🧠 Research"
+    - "📈 Optimization"
+#  label
+
+columns:
+  project_name:
+    name: &project_name_label "🏷️ Project Name"
+    gr_type: Textbox
+    gr_clear: ""
+    gr_kwargs:
+      label: *project_name_label
+      placeholder: "Enter project name..."
+      info: "Give your project a descriptive name"
+      interactive: true
+
+  data_type:
+    name: &data_type_label "🧩 Data Type"
+    gr_type: CheckboxGroup
+    gr_clear: []
+    gr_kwargs:
+      choices: *data_type_options
+      label: *data_type_label
+      info: "Select one or more data types used in your project"
+      interactive: true
+
+  technique:
+    name: &technique_label "🧠 Technique / Model Type"
+    gr_type: CheckboxGroup
+    gr_clear: []
+    gr_kwargs:
+      choices: *technique_options
+      label: *technique_label
+      info: "Select the techniques or model types used"
+      interactive: true
+
+  problem_type:
+    name: &problem_type_label "🎯 Problem Type"
+    gr_type: CheckboxGroup
+    gr_clear: []
+    gr_kwargs:
+      choices: *problem_type_options
+      label: *problem_type_label
+      info: "What type of problem does this project solve?"
+      interactive: true
+
+  domain:
+    name: &domain_label "💼 Application Domain"
+    gr_type: CheckboxGroup
+    gr_clear: []
+    gr_kwargs:
+      choices: *domain_options
+      label: *domain_label
+      info: "Which domain does this project apply to?"
+      interactive: true
+
+  tools:
+    name: &tools_label "🛠️ Tools / Frameworks"
+    gr_type: CheckboxGroup
+    gr_clear: []
+    gr_kwargs:
+      choices: *tools_options
+      label: *tools_label
+      info: "Select the tools and frameworks used"
+      interactive: true
+
+  level:
+    name: &level_label "🔥 Complexity Level"
+    gr_type: Dropdown
+    gr_clear: ""
+    gr_kwargs:
+      choices: *level_options
+      label: *level_label
+      info: "How complex is this project?"
+      interactive: true
+
+  outcome:
+    name: &outcome_label "💡 Outcome Type"
+    gr_type: CheckboxGroup
+    gr_clear: []
+    gr_kwargs:
+      choices: *outcome_options
+      label: *outcome_label
+      info: "What type of outcome does this project provide?"
+      interactive: true
+
+  link:
+    name: &link_label "🔗 Link / Repo"
+    gr_type: Textbox
+    gr_clear: ""
+    gr_kwargs:
+      label: *link_label
+      placeholder: "https://github.com/username/project or project URL..."
+      info: "Provide a link to your project repository or demo"
+      interactive: true

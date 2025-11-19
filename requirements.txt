@@ -1,0 +1,2 @@
+gradio==5.49.1
+fastparquet==2024.11.0
