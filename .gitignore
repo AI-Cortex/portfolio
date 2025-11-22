@@ -2,6 +2,7 @@ key.md
 *.toml
 .gradio
 *.ipynb
+.gradio/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
