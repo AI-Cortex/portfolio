@@ -1,9 +1,6 @@
 import gradio as gr
 from omegaconf import DictConfig
-import pandas as pd
-from pandas import DataFrame
 from src.core.utils import *
-from typing import List
 import numpy as np
 
 

@@ -1,9 +1,6 @@
 import gradio as gr
-from omegaconf import DictConfig
 import pandas as pd
-from pandas import DataFrame
 from src.core.utils import *
-from typing import List
 from collections import OrderedDict
 
 
@@ -35,7 +32,7 @@ def add_handler(fields: Fields, cfg, msg: str = 'added'):
 
 
 def add(project_name, data_type, technique, problem_type,
-        domain, tools, level, outcome, link, cfg, msg: str = 'added'):
+        domain, tools, level, outcome, note, link, cfg, msg: str = 'added'):
     fields = Fields()
     d = OrderedDict([
         ("project_name", project_name),
@@ -46,6 +43,7 @@ def add(project_name, data_type, technique, problem_type,
         ("tools", tools),
         ("level", level),
         ("outcome", outcome),
+        ("note", note),
         ("link", link),
     ])
     fields.add(d)
@@ -74,6 +72,7 @@ def create_add_tab(cfg):
         tools = gr.CheckboxGroup(**cfg.columns.tools.gr_kwargs)
         level = gr.Dropdown(**cfg.columns.level.gr_kwargs)
         outcome = gr.CheckboxGroup(**cfg.columns.outcome.gr_kwargs)
+        note = gr.Textbox(**cfg.columns.note.gr_kwargs)
         link = gr.Textbox(**cfg.columns.link.gr_kwargs)
 
         add_btn = gr.Button("✅ Add Project", variant="primary")
@@ -81,10 +80,10 @@ def create_add_tab(cfg):
         add_btn.click(
             fn=add,
             inputs=[project_name, data_type, technique, problem_type,
-                    domain, tools, level, outcome, link,
+                    domain, tools, level, outcome, note, link,
 
                     gr.State(cfg)],
 
             outputs=[project_name, data_type, technique, problem_type,
-                     domain, tools, level, outcome, link,]
+                     domain, tools, level, outcome, note, link,]
         )

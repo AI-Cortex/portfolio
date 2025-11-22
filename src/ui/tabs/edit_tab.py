@@ -1,10 +1,6 @@
-from cv2 import add
 import gradio as gr
 from omegaconf import DictConfig
-import pandas as pd
-from pandas import DataFrame
 from src.core.utils import *
-from typing import List
 import numpy as np
 from src.ui.tabs.add_tab import add
 from src.ui.tabs.delete_tab import delete_handler
@@ -35,21 +31,21 @@ def show_data(selected_project, cfg):
 
 
 def edit(project_name, data_type, technique, problem_type,
-         domain, tools, level, outcome, link,
+         domain, tools, level, outcome, note, link,
          project_id, cfg):
     if project_name.strip() == "":
         gr.Warning("❌ **Error:** Project name is required!")
         return (project_name, data_type, technique, problem_type,
-                domain, tools, level, outcome, link, project_id)
+                domain, tools, level, outcome, note, link, project_id)
 
     if project_id == project_name:
         delete_handler(cfg, project_id, 'Edited_2')
         output = add(project_name, data_type, technique, problem_type,
-                     domain, tools, level, outcome, link, cfg, 'Edited_1')
+                     domain, tools, level, outcome, note, link, cfg, 'Edited_1')
 
     else:
         output = add(project_name, data_type, technique, problem_type,
-                     domain, tools, level, outcome, link, cfg, 'Edited_1')
+                     domain, tools, level, outcome, note, link, cfg, 'Edited_1')
         if output[0] == "":
             delete_handler(cfg, project_id, 'Edited_2')
 
@@ -86,7 +82,8 @@ def create_edit_tab(cfg):
         tools = gr.CheckboxGroup(**cfg.columns.tools.gr_kwargs)
         level = gr.Dropdown(**cfg.columns.level.gr_kwargs)
         outcome = gr.CheckboxGroup(**cfg.columns.outcome.gr_kwargs)
-        link = gr.Textbox(**cfg.columns.link.gr_kwargs, lines=2)
+        note = gr.Textbox(**cfg.columns.note.gr_kwargs, lines=3)
+        link = gr.Textbox(**cfg.columns.link.gr_kwargs, lines=1)
 
         edit_btn = gr.Button("✅ Edit Project", variant="primary")
 
@@ -95,17 +92,17 @@ def create_edit_tab(cfg):
             inputs=[project_id, gr.State(cfg)],
             outputs=[
                 project_name, data_type, technique, problem_type,
-                domain, tools, level, outcome, link
+                domain, tools, level, outcome, note, link
             ]
         )
 
         edit_btn.click(
             fn=edit,
             inputs=[project_name, data_type, technique, problem_type,
-                    domain, tools, level, outcome, link, project_id,
+                    domain, tools, level, outcome, note, link, project_id,
                     gr.State(cfg)],
 
             outputs=[project_name, data_type, technique, problem_type,
-                     domain, tools, level, outcome, link, project_id
+                     domain, tools, level, outcome, note, link, project_id
                      ]
         )

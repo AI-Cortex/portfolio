@@ -142,6 +142,16 @@ columns:
       info: "What type of outcome does this project provide?"
       interactive: true
 
+  note:
+    name: &note_label "📝 Project Note"
+    gr_type: Textbox
+    gr_clear: ""
+    gr_kwargs:
+      label: *note_label
+      placeholder: "Briefly describe your project..."
+      info: "Provide a short description or note about your project"
+      interactive: true
+
   link:
     name: &link_label "🔗 Link / Repo"
     gr_type: Textbox
